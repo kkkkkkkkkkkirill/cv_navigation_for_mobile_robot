@@ -1,0 +1,288 @@
+<?xml version="1.0"?>
+<robot name="kolestel_rover" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
+
+  <!-- ПАРАМЕТРЫ -->
+  <xacro:property name="wheelbase"    value="0.889"/>
+  <xacro:property name="track"        value="0.9895"/>
+  <xacro:property name="wheel_radius" value="0.200"/>
+  <xacro:property name="wheel_width"  value="0.1635"/>
+  <xacro:property name="chassis_mass" value="25.0"/>
+  <xacro:property name="wheel_mass"   value="2.5"/>
+
+  <!-- BASE FOOTPRINT -->
+  <link name="base_footprint"/>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child  link="base_link"/>
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+  </joint>
+
+<!-- CHASSIS -->
+<link name="base_link">
+  <visual>
+    <origin xyz="0 0 -0.05" rpy="0 0 ${pi/2}"/>
+    <geometry>
+      <mesh filename="package://kolestel_rover_description/meshes/chassis.stl"
+            scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="olive">
+      <color rgba="0.30 0.35 0.25 1.0"/>
+    </material>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0.12" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.90 0.55 0.18"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <origin xyz="0 0 0.12" rpy="0 0 0"/>
+    <mass value="${chassis_mass}"/>
+    <inertia
+      ixx="${chassis_mass*(0.55*0.55+0.18*0.18)/12.0}"
+      iyy="${chassis_mass*(0.90*0.90+0.18*0.18)/12.0}"
+      izz="${chassis_mass*(0.90*0.90+0.55*0.55)/12.0}"
+      ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+</link>
+
+<gazebo reference="base_link">
+  <visual>
+    <material>
+      <ambient>0.30 0.35 0.25 1</ambient>
+      <diffuse>0.30 0.35 0.25 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+    </material>
+  </visual>
+</gazebo>
+
+  <!-- МАКРОС КОЛЕСА -->
+<xacro:macro name="wheel" params="name front_sign left_sign">
+  <link name="wheel_${name}">
+    <visual>
+      <origin xyz="${-front_sign * wheelbase/2} ${-left_sign * track/2} ${-wheel_radius}" rpy="0 0 ${pi/2}"/>
+      <geometry>
+        <mesh filename="package://kolestel_rover_description/meshes/wheel_${name}.stl"
+              scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="${wheel_mass}"/>
+      <inertia
+        ixx="${wheel_mass*(3*wheel_radius*wheel_radius+wheel_width*wheel_width)/12.0}"
+        iyy="${wheel_mass*wheel_radius*wheel_radius/2.0}"
+        izz="${wheel_mass*(3*wheel_radius*wheel_radius+wheel_width*wheel_width)/12.0}"
+        ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="wheel_${name}_joint" type="continuous">
+    <parent link="base_link"/>
+    <child  link="wheel_${name}"/>
+    <origin xyz="${front_sign * wheelbase/2} ${left_sign * track/2} 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.1" friction="0.5"/>
+  </joint>
+
+  <gazebo reference="wheel_${name}">
+    <material>Gazebo/DarkGrey</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <selfCollide>false</selfCollide>
+  </gazebo>
+</xacro:macro>
+
+  <!-- 4 КОЛЕСА -->
+  <xacro:wheel name="fl" front_sign=" 1" left_sign=" 1"/>
+  <xacro:wheel name="fr" front_sign=" 1" left_sign="-1"/>
+  <xacro:wheel name="rl" front_sign="-1" left_sign=" 1"/>
+  <xacro:wheel name="rr" front_sign="-1" left_sign="-1"/>
+
+  <!-- GAZEBO ПЛАГИНЫ -->
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system"
+            name="gz::sim::systems::DiffDrive">
+      <left_joint>wheel_fl_joint</left_joint>
+      <left_joint>wheel_rl_joint</left_joint>
+      <right_joint>wheel_fr_joint</right_joint>
+      <right_joint>wheel_rr_joint</right_joint>
+      <wheel_separation>${track}</wheel_separation>
+      <wheel_radius>${wheel_radius}</wheel_radius>
+      <odom_publish_frequency>50</odom_publish_frequency>
+      <topic>/cmd_vel</topic>
+      <odom_topic>/odom</odom_topic>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_footprint</child_frame_id>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="gz-sim-joint-state-publisher-system"
+            name="gz::sim::systems::JointStatePublisher">
+      <topic>/joint_states</topic>
+    </plugin>
+  </gazebo>
+
+  <!-- ЛИДАР Livox Mid-360 -->
+  <link name="laser_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
+      <geometry>
+        <mesh filename="package://kolestel_rover_description/meshes/Livox_MID-360.stl"
+              scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="livox_dark">
+        <color rgba="0.15 0.15 0.15 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser_link"/>
+    <origin xyz="0.47 0.0 0.76" rpy="0 0 0"/>
+  </joint>
+
+  <!-- IMU встроен в Mid-360 -->
+  <link name="imu_link"/>
+
+  <joint name="laser_imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo reference="laser_link">
+    <visual>
+      <material>
+        <ambient>0.15 0.15 0.15 1</ambient>
+        <diffuse>0.20 0.20 0.20 1</diffuse>
+        <specular>0.4 0.4 0.4 1</specular>
+      </material>
+    </visual>
+  </gazebo>
+
+  <gazebo reference="laser_link">
+    <sensor name="gpu_lidar" type="gpu_lidar">
+      <pose relative_to="laser_link">0 0 0 0 0 0</pose>
+      <topic>/kolestel_rover/scan</topic>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159</min_angle>
+            <max_angle>3.14159</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>40</samples>
+            <resolution>1</resolution>
+            <min_angle>-0.1222</min_angle>
+            <max_angle>0.9076</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.1</min>
+          <max>40.0</max>
+          <resolution>0.01</resolution>
+        </range>
+      </ray>
+      <always_on>1</always_on>
+      <visualize>true</visualize>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="imu_link">
+    <sensor name="imu_sensor" type="imu">
+      <always_on>1</always_on>
+      <update_rate>100</update_rate>
+      <visualize>false</visualize>
+      <topic>/kolestel_rover/imu</topic>
+    </sensor>
+  </gazebo>
+
+  <!-- КАМЕРА Intel RealSense D435 -->
+  <xacro:sensor_d435 parent="base_link" name="camera" use_nominal_extrinsics="true">
+    <origin xyz="0.58 0.005 0.2" rpy="0 0 0"/>
+  </xacro:sensor_d435>
+
+  <gazebo reference="camera_link">
+    <visual>
+      <origin xyz="0.0043 -0.0175 0" rpy="1.5708 0 1.5708"/>
+      <geometry>
+        <mesh>
+          <uri>package://kolestel_rover_description/meshes/d435.stl</uri>
+          <scale>1 1 1</scale>
+        </mesh>
+      </geometry>
+      <material>
+        <ambient>0.1 0.1 0.1 1</ambient>
+        <diffuse>0.2 0.2 0.2 1</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+
+<gazebo reference="camera_color_frame">
+    <sensor name="rgb_camera" type="camera">
+      <topic>/kolestel_rover/camera/color/image_raw</topic>
+      <camera_info_topic>/kolestel_rover/camera/color/camera_info</camera_info_topic>
+      <update_rate>30</update_rate>
+      <camera>
+        <horizontal_fov>1.2043</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.3</near>
+          <far>10.0</far>
+        </clip>
+      </camera>
+      <always_on>1</always_on>
+      <visualize>true</visualize>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="camera_depth_frame">
+    <sensor name="depth_camera" type="depth_camera">
+      <topic>/kolestel_rover/camera/depth/image_rect_raw</topic>
+      <camera_info_topic>/kolestel_rover/camera/depth/camera_info</camera_info_topic>
+      <update_rate>30</update_rate>
+      <camera>
+        <horizontal_fov>1.5184</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R_FLOAT32</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>10.0</far>
+        </clip>
+      </camera>
+      <always_on>1</always_on>
+      <visualize>true</visualize>
+    </sensor>
+  </gazebo>
+
+</robot>

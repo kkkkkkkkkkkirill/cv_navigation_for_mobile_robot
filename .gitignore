@@ -1,0 +1,73 @@
+# --- ROS 2 build artifacts ---
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+build/
+install/
+log/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.env
+.env.local
+
+# --- Databases / state ---
+*.db
+*.sqlite
+*.sqlite3
+
+# --- Tests / coverage ---
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# --- IDE ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Build/dist ---
+dist/
+build/
+*.egg
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Logs / runtime ---
+*.log
+logs/
+*.bag
+*.bag.active
+*.mcap
+rosbag2_*/
+
+# --- Gazebo runtime cache (in case anyone copies one in) ---
+.gz/
+.gazebo/
+
+# --- Local user overrides ---
+*.local.yaml
+*.local.json
+local_*
+
+# --- Editor backups ---
+*.bak
+*.orig

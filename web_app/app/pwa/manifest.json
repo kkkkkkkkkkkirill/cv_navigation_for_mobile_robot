@@ -1,0 +1,9 @@
+{
+  "name": "AMR Navigation",
+  "short_name": "AMR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#eef4ff",
+  "theme_color": "#2563eb",
+  "icons": []
+}

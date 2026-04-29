@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<sdf version="1.8">
+  <model name="aruco_marker_18">
+    <static>true</static>
+    <link name="link">
+      <visual name="front">
+        <geometry>
+          <box>
+            <size>0.4 0.01 0.4</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://aruco_marker_18/materials/textures/marker_18.png</albedo_map>
+              <metalness>0.0</metalness>
+              <roughness>0.9</roughness>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <collision name="col">
+        <geometry>
+          <box>
+            <size>0.4 0.01 0.4</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

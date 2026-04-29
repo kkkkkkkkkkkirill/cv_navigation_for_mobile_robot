@@ -1,0 +1,1276 @@
+warehouse:
+  bounds:
+    x_min: -6.0
+    x_max: 34.0
+    y_min: -14.0
+    y_max: 52.0
+  floor_regions:
+  - id: plain_floor
+    x: -6.0
+    y: -10.0
+    w: 40.0
+    h: 62.0
+  - id: depot_support_floor
+    x: 2.0
+    y: -14.0
+    w: 8.0
+    h: 6.0
+  aisles:
+    A:
+      x: 2.0
+    B:
+      x: 9.0
+    C:
+      x: 15.0
+    D:
+      x: 22.0
+    E:
+      x: 30.0
+  rows:
+    south: -8.0
+    row1: -2.0
+    row2: 10.0
+    row3: 22.0
+    row4: 35.0
+    row5: 47.0
+  stations:
+    depot:
+      x: 10.5
+      y: -8.0
+      yaw: 1.57
+      label: Depot / Charging
+    shelf_a1:
+      x: 2.0
+      y: -2.0
+      yaw: 1.57
+      label: Shelf A1
+    shelf_a2:
+      x: 2.0
+      y: 10.0
+      yaw: 1.57
+      label: Shelf A2
+    shelf_a3:
+      x: 2.0
+      y: 22.0
+      yaw: 1.57
+      label: Shelf A3
+    shelf_a4:
+      x: 2.0
+      y: 35.0
+      yaw: 1.57
+      label: Shelf A4
+    shelf_a5:
+      x: 2.0
+      y: 47.0
+      yaw: 1.57
+      label: Shelf A5
+    shelf_b1:
+      x: 9.0
+      y: -2.0
+      yaw: 1.57
+      label: Shelf B1
+    shelf_b2:
+      x: 9.0
+      y: 10.0
+      yaw: 1.57
+      label: Shelf B2
+    shelf_b3:
+      x: 9.0
+      y: 22.0
+      yaw: 1.57
+      label: Shelf B3
+    shelf_b4:
+      x: 9.0
+      y: 35.0
+      yaw: 1.57
+      label: Shelf B4
+    shelf_c1:
+      x: 15.0
+      y: -2.0
+      yaw: 1.57
+      label: Shelf C1
+    shelf_c2:
+      x: 15.0
+      y: 10.0
+      yaw: 1.57
+      label: Shelf C2
+    shelf_c3:
+      x: 15.0
+      y: 22.0
+      yaw: 1.57
+      label: Shelf C3
+    shelf_c4:
+      x: 15.0
+      y: 35.0
+      yaw: 1.57
+      label: Shelf C4
+    shelf_c5:
+      x: 15.0
+      y: 47.0
+      yaw: 1.57
+      label: Shelf C5
+    shelf_d1:
+      x: 22.0
+      y: -2.0
+      yaw: 1.57
+      label: Shelf D1
+    shelf_d2:
+      x: 22.0
+      y: 10.0
+      yaw: 1.57
+      label: Shelf D2
+    shelf_d3:
+      x: 22.0
+      y: 22.0
+      yaw: 1.57
+      label: Shelf D3
+    shelf_d4:
+      x: 22.0
+      y: 35.0
+      yaw: 1.57
+      label: Shelf D4
+    shelf_e1:
+      x: 30.0
+      y: -2.0
+      yaw: 1.57
+      label: Shelf E1
+    shelf_e2:
+      x: 30.0
+      y: 10.0
+      yaw: 1.57
+      label: Shelf E2
+    shelf_e3:
+      x: 30.0
+      y: 22.0
+      yaw: 1.57
+      label: Shelf E3
+    shelf_e4:
+      x: 30.0
+      y: 35.0
+      yaw: 1.57
+      label: Shelf E4
+  nodes:
+    n_a_south:
+      x: 2.0
+      y: -8.0
+    n_a_row1:
+      x: 2.0
+      y: -2.0
+    n_a_row2:
+      x: 2.0
+      y: 10.0
+    n_a_row3:
+      x: 2.0
+      y: 22.0
+    n_a_row4:
+      x: 2.0
+      y: 35.0
+    n_a_row5:
+      x: 2.0
+      y: 47.0
+    n_b_south:
+      x: 9.0
+      y: -8.0
+    n_b_row1:
+      x: 9.0
+      y: -2.0
+    n_b_row2:
+      x: 9.0
+      y: 10.0
+    n_b_row3:
+      x: 9.0
+      y: 22.0
+    n_b_row4:
+      x: 9.0
+      y: 35.0
+    n_b_row5:
+      x: 9.0
+      y: 47.0
+    n_c_south:
+      x: 15.0
+      y: -8.0
+    n_c_row1:
+      x: 15.0
+      y: -2.0
+    n_c_row2:
+      x: 15.0
+      y: 10.0
+    n_c_row3:
+      x: 15.0
+      y: 22.0
+    n_c_row4:
+      x: 15.0
+      y: 35.0
+    n_c_row5:
+      x: 15.0
+      y: 47.0
+    n_d_south:
+      x: 22.0
+      y: -8.0
+    n_d_row1:
+      x: 22.0
+      y: -2.0
+    n_d_row2:
+      x: 22.0
+      y: 10.0
+    n_d_row3:
+      x: 22.0
+      y: 22.0
+    n_d_row4:
+      x: 22.0
+      y: 35.0
+    n_d_row5:
+      x: 22.0
+      y: 47.0
+    n_e_south:
+      x: 30.0
+      y: -8.0
+    n_e_row1:
+      x: 30.0
+      y: -2.0
+    n_e_row2:
+      x: 30.0
+      y: 10.0
+    n_e_row3:
+      x: 30.0
+      y: 22.0
+    n_e_row4:
+      x: 30.0
+      y: 35.0
+    n_e_row5:
+      x: 30.0
+      y: 47.0
+    n_depot:
+      x: 10.5
+      y: -8.0
+  lanes:
+  - - n_a_south
+    - n_b_south
+  - - n_b_south
+    - n_c_south
+  - - n_c_south
+    - n_d_south
+  - - n_d_south
+    - n_e_south
+  - - n_a_row1
+    - n_b_row1
+  - - n_b_row1
+    - n_c_row1
+  - - n_c_row1
+    - n_d_row1
+  - - n_d_row1
+    - n_e_row1
+  - - n_a_row2
+    - n_b_row2
+  - - n_b_row2
+    - n_c_row2
+  - - n_c_row2
+    - n_d_row2
+  - - n_d_row2
+    - n_e_row2
+  - - n_a_row3
+    - n_b_row3
+  - - n_b_row3
+    - n_c_row3
+  - - n_c_row3
+    - n_d_row3
+  - - n_d_row3
+    - n_e_row3
+  - - n_a_row4
+    - n_b_row4
+  - - n_b_row4
+    - n_c_row4
+  - - n_c_row4
+    - n_d_row4
+  - - n_d_row4
+    - n_e_row4
+  - - n_a_row5
+    - n_b_row5
+  - - n_b_row5
+    - n_c_row5
+  - - n_c_row5
+    - n_d_row5
+  - - n_d_row5
+    - n_e_row5
+  - - n_a_south
+    - n_a_row1
+  - - n_a_row1
+    - n_a_row2
+  - - n_a_row2
+    - n_a_row3
+  - - n_a_row3
+    - n_a_row4
+  - - n_a_row4
+    - n_a_row5
+  - - n_b_south
+    - n_b_row1
+  - - n_b_row1
+    - n_b_row2
+  - - n_b_row2
+    - n_b_row3
+  - - n_b_row3
+    - n_b_row4
+  - - n_b_row4
+    - n_b_row5
+  - - n_c_south
+    - n_c_row1
+  - - n_c_row1
+    - n_c_row2
+  - - n_c_row2
+    - n_c_row3
+  - - n_c_row3
+    - n_c_row4
+  - - n_c_row4
+    - n_c_row5
+  - - n_d_south
+    - n_d_row1
+  - - n_d_row1
+    - n_d_row2
+  - - n_d_row2
+    - n_d_row3
+  - - n_d_row3
+    - n_d_row4
+  - - n_d_row4
+    - n_d_row5
+  - - n_e_south
+    - n_e_row1
+  - - n_e_row1
+    - n_e_row2
+  - - n_e_row2
+    - n_e_row3
+  - - n_e_row3
+    - n_e_row4
+  - - n_e_row4
+    - n_e_row5
+  - - n_b_south
+    - n_depot
+  - - n_depot
+    - n_c_south
+  obstacles:
+  - id: wall_west
+    x: -6.1
+    y: -10.0
+    w: 0.2
+    h: 62.0
+    kind: wall
+  - id: wall_east
+    x: 33.9
+    y: -10.0
+    w: 0.2
+    h: 62.0
+    kind: wall
+  - id: wall_south
+    x: -6.0
+    y: -10.1
+    w: 40.0
+    h: 0.2
+    kind: wall
+  - id: wall_north
+    x: -6.0
+    y: 51.9
+    w: 40.0
+    h: 0.2
+    kind: wall
+  - id: aws_robomaker_warehouse_ShelfF_01_001
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfF_01
+    x: -6.846
+    y: -9.98
+    w: 2.102
+    h: 18.047
+  - id: aws_robomaker_warehouse_ShelfD_01_001
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 5.01
+    y: -1.462
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfD_01_002
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 5.124
+    y: -5.307
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfD_01_003
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 5.039
+    y: -7.592
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_Bucket_01_021
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: -2.303
+    y: -6.986
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_ClutteringA_01_016
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 5.436
+    y: 6.515
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringA_01_017
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 3.257
+    y: 6.591
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringA_01_018
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: -2.581
+    y: 3.454
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringC_01_027
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 3.321
+    y: 1.496
+    w: 2.06
+    h: 1.773
+  - id: aws_robomaker_warehouse_ClutteringC_01_028
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 5.735
+    y: 1.406
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringC_01_029
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 5.799
+    y: 3.83
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringC_01_030
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 3.74
+    y: 3.983
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringC_01_031
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: -2.454
+    y: 0.469
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringC_01_032
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: -2.259
+    y: 7.114
+    w: 2.06
+    h: 1.773
+  - id: aws_robomaker_warehouse_ClutteringD_01_005
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: -2.143
+    y: -8.558
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_TrashCanC_01_002
+    kind: bin
+    source_model: aws_robomaker_warehouse_TrashCanC_01
+    x: -2.332
+    y: 5.82
+    w: 1.479
+    h: 0.909
+  - id: Untitled__aws_robomaker_warehouse_Bucket_01
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: -1.932
+    y: -4.334
+    w: 0.941
+    h: 1.222
+  - id: Untitled__aws_robomaker_warehouse_DeskC_01
+    kind: desk
+    source_model: aws_robomaker_warehouse_DeskC_01
+    x: -2.523
+    y: -1.361
+    w: 1.555
+    h: 0.882
+  - id: aws_robomaker_warehouse_Bucket_01_0
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 5.235
+    y: 15.81
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_Bucket_01_1
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 4.851
+    y: 28.675
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_ClutteringA_01
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 4.118
+    y: 38.347
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_PalletJackB_01
+    kind: pallet_jack
+    source_model: aws_robomaker_warehouse_PalletJackB_01
+    x: 3.97
+    y: 44.095
+    w: 1.161
+    h: 0.54
+  - id: aws_robomaker_warehouse_ShelfD_01
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 5.147
+    y: 47.776
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_TrashCanC_01
+    kind: bin
+    source_model: aws_robomaker_warehouse_TrashCanC_01
+    x: 5.336
+    y: 19.869
+    w: 1.479
+    h: 0.909
+  - id: aws_robomaker_warehouse_ShelfD_01_0
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 4.613
+    y: 30.526
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfE_01
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: 5.204
+    y: 36.664
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfF_01
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfF_01
+    x: -6.902
+    y: 10.963
+    w: 2.102
+    h: 18.047
+  - id: aws_robomaker_warehouse_TrashCanC_01_0
+    kind: bin
+    source_model: aws_robomaker_warehouse_TrashCanC_01
+    x: 11.772
+    y: 48.529
+    w: 1.479
+    h: 0.909
+  - id: aws_robomaker_warehouse_ShelfF_01_0
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfF_01
+    x: -6.59
+    y: 32.549
+    w: 2.102
+    h: 18.047
+  - id: aws_robomaker_warehouse_ClutteringA_01_0
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 3.614
+    y: 17.395
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_DeskC_01_0
+    kind: desk
+    source_model: aws_robomaker_warehouse_DeskC_01
+    x: 10.271
+    y: 23.661
+    w: 0.882
+    h: 1.555
+  - id: aws_robomaker_warehouse_ClutteringD_01
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 3.73
+    y: 15.289
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ClutteringA_01_1
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 4.951
+    y: 13.357
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringD_01_0
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 3.388
+    y: 12.991
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_Bucket_01_3
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 3.156
+    y: 19.977
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_ShelfE_01_0
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: -2.113
+    y: 14.284
+    w: 2.613
+    h: 0.88
+  - id: aws_robomaker_warehouse_PalletJackB_01_0
+    kind: pallet_jack
+    source_model: aws_robomaker_warehouse_PalletJackB_01
+    x: 6.366
+    y: 11.411
+    w: 1.161
+    h: 0.54
+  - id: aws_robomaker_warehouse_TrashCanC_01_1
+    kind: bin
+    source_model: aws_robomaker_warehouse_TrashCanC_01
+    x: -1.29
+    y: 31.176
+    w: 1.479
+    h: 0.909
+  - id: aws_robomaker_warehouse_ShelfD_01_1
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: -2.073
+    y: 17.033
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfE_01_1
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: 4.884
+    y: 22.966
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_Bucket_01_4
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: -1.567
+    y: 20.187
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_Bucket_01_5
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: -2.609
+    y: 18.9
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_Bucket_01_6
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: -0.495
+    y: 19.145
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_DeskC_01_1
+    kind: desk
+    source_model: aws_robomaker_warehouse_DeskC_01
+    x: -1.07
+    y: 24.297
+    w: 0.882
+    h: 1.555
+  - id: aws_robomaker_warehouse_TrashCanC_01_2
+    kind: bin
+    source_model: aws_robomaker_warehouse_TrashCanC_01
+    x: -0.999
+    y: 27.279
+    w: 1.479
+    h: 0.909
+  - id: aws_robomaker_warehouse_PalletJackB_01_1
+    kind: pallet_jack
+    source_model: aws_robomaker_warehouse_PalletJackB_01
+    x: -1.362
+    y: 29.341
+    w: 1.161
+    h: 0.54
+  - id: aws_robomaker_warehouse_ClutteringC_01
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: -1.585
+    y: 37.015
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringD_01_1
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: -0.759
+    y: 41.125
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ClutteringD_01_2
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: -0.804
+    y: 43.66
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_TrashCanC_01_3
+    kind: bin
+    source_model: aws_robomaker_warehouse_TrashCanC_01
+    x: -1.467
+    y: 39.809
+    w: 1.479
+    h: 0.909
+  - id: aws_robomaker_warehouse_PalletJackB_01_2
+    kind: pallet_jack
+    source_model: aws_robomaker_warehouse_PalletJackB_01
+    x: 4.617
+    y: 26.693
+    w: 1.161
+    h: 0.54
+  - id: aws_robomaker_warehouse_ShelfE_01_2
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: 5.087
+    y: 40.208
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfE_01_3
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: -1.268
+    y: 48.106
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_Bucket_01_7
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 11.997
+    y: 25.35
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_ClutteringA_01_4
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 11.164
+    y: 26.7
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringD_01_3
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 11.747
+    y: 28.92
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ShelfD_01_2
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 11.552
+    y: 16.291
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ClutteringC_01_0
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 11.077
+    y: 12.065
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ShelfE_01_4
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: 11.539
+    y: 14.354
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfE_01_5
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: 11.528
+    y: 18.413
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_Bucket_01_8
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 12.108
+    y: 23.576
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_DeskC_01_2
+    kind: desk
+    source_model: aws_robomaker_warehouse_DeskC_01
+    x: 12.874
+    y: 29.622
+    w: 0.882
+    h: 1.555
+  - id: aws_robomaker_warehouse_TrashCanC_01_4
+    kind: bin
+    source_model: aws_robomaker_warehouse_TrashCanC_01
+    x: 11.641
+    y: 37.301
+    w: 1.479
+    h: 0.909
+  - id: aws_robomaker_warehouse_PalletJackB_01_3
+    kind: pallet_jack
+    source_model: aws_robomaker_warehouse_PalletJackB_01
+    x: 12.694
+    y: 32.414
+    w: 1.161
+    h: 0.54
+  - id: aws_robomaker_warehouse_ClutteringA_01_6
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 11.215
+    y: 42.197
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringC_01_1
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 11.484
+    y: 38.959
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringC_01_2
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 11.632
+    y: 50.2
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_Bucket_01_9
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 11.443
+    y: 31.146
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_ClutteringA_01_8
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 11.78
+    y: 5.999
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringC_01_3
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 11.651
+    y: 3.239
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringD_01_4
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 12.12
+    y: 0.522
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ShelfD_01_4
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 11.616
+    y: -4.845
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfE_01_6
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: 11.602
+    y: -6.592
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ClutteringD_01_5
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 18.662
+    y: 50.022
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ClutteringD_01_8
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 16.766
+    y: 49.933
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_Bucket_01_10
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 19.098
+    y: 43.272
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_Bucket_01_11
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 17.853
+    y: 43.734
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_Bucket_01_12
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 16.593
+    y: 42.975
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_Bucket_01_13
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 19.087
+    y: 41.269
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_Bucket_01_14
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 17.803
+    y: 41.0
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_Bucket_01_16
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 18.31
+    y: 39.287
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_Bucket_01_17
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 16.703
+    y: 39.55
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_Bucket_01_18
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 18.847
+    y: 37.24
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_TrashCanC_01_5
+    kind: bin
+    source_model: aws_robomaker_warehouse_TrashCanC_01
+    x: 16.805
+    y: 37.373
+    w: 1.479
+    h: 0.909
+  - id: aws_robomaker_warehouse_ClutteringC_01_4
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 18.01
+    y: 31.092
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringC_01_5
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 18.163
+    y: 28.943
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringD_01_9
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 17.199
+    y: 29.523
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ClutteringD_01_10
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 16.961
+    y: 30.938
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ClutteringA_01_11
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 17.359
+    y: 25.945
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringD_01_11
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 19.403
+    y: 24.314
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ClutteringD_01_12
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 16.905
+    y: 24.086
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ShelfD_01_5
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 17.972
+    y: 15.423
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfE_01_7
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: 17.914
+    y: 13.09
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfD_01_6
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 17.841
+    y: 10.952
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_TrashCanC_01_6
+    kind: bin
+    source_model: aws_robomaker_warehouse_TrashCanC_01
+    x: 17.839
+    y: 7.2
+    w: 1.479
+    h: 0.909
+  - id: aws_robomaker_warehouse_DeskC_01_3
+    kind: desk
+    source_model: aws_robomaker_warehouse_DeskC_01
+    x: 17.94
+    y: 18.753
+    w: 0.882
+    h: 1.555
+  - id: aws_robomaker_warehouse_ClutteringD_01_13
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 17.942
+    y: 5.314
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ClutteringC_01_6
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 16.786
+    y: 2.648
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringD_01_14
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 19.046
+    y: 2.702
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ClutteringA_01_12
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 17.651
+    y: 0.078
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringA_01_14
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 17.191
+    y: -6.735
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringA_01_16
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 25.655
+    y: 49.981
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringA_01_18
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 25.185
+    y: 43.247
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ShelfF_01_1
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfF_01
+    x: 32.434
+    y: 33.878
+    w: 2.102
+    h: 18.047
+  - id: aws_robomaker_warehouse_ShelfF_01_2
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfF_01
+    x: 31.82
+    y: 14.212
+    w: 2.102
+    h: 18.047
+  - id: aws_robomaker_warehouse_ShelfF_01_3
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfF_01
+    x: 31.945
+    y: -7.902
+    w: 2.102
+    h: 18.047
+  - id: aws_robomaker_warehouse_Bucket_01_19
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 25.487
+    y: 41.452
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_ShelfD_01_7
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 25.338
+    y: 37.882
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfD_01_8
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 25.804
+    y: 36.102
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_PalletJackB_01_4
+    kind: pallet_jack
+    source_model: aws_robomaker_warehouse_PalletJackB_01
+    x: 26.241
+    y: 32.302
+    w: 1.161
+    h: 0.54
+  - id: aws_robomaker_warehouse_PalletJackB_01_5
+    kind: pallet_jack
+    source_model: aws_robomaker_warehouse_PalletJackB_01
+    x: 27.112
+    y: 41.671
+    w: 1.161
+    h: 0.54
+  - id: aws_robomaker_warehouse_TrashCanC_01_7
+    kind: bin
+    source_model: aws_robomaker_warehouse_TrashCanC_01
+    x: 26.452
+    y: 40.442
+    w: 1.479
+    h: 0.909
+  - id: aws_robomaker_warehouse_ClutteringA_01_19
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 25.939
+    y: 25.982
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringA_01_20
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 25.649
+    y: 23.594
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringC_01_7
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 25.389
+    y: 18.032
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringD_01_18
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 26.192
+    y: 14.625
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ShelfE_01_9
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: 25.564
+    y: 11.306
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfE_01_10
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: 25.633
+    y: 5.606
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfE_01_11
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfE_01
+    x: 25.802
+    y: 2.811
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ShelfD_01_9
+    kind: shelf
+    source_model: aws_robomaker_warehouse_ShelfD_01
+    x: 25.8
+    y: -0.123
+    w: 0.88
+    h: 2.613
+  - id: aws_robomaker_warehouse_ClutteringC_01_8
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 26.008
+    y: 5.978
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_ClutteringD_01_19
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 27.176
+    y: -5.195
+    w: 1.017
+    h: 1.492
+  - id: aws_robomaker_warehouse_ClutteringC_01_9
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringC_01
+    x: 23.865
+    y: -6.181
+    w: 1.773
+    h: 2.06
+  - id: aws_robomaker_warehouse_TrashCanC_01_8
+    kind: bin
+    source_model: aws_robomaker_warehouse_TrashCanC_01
+    x: 25.94
+    y: 1.572
+    w: 1.479
+    h: 0.909
+  - id: aws_robomaker_warehouse_PalletJackB_01_6
+    kind: pallet_jack
+    source_model: aws_robomaker_warehouse_PalletJackB_01
+    x: 25.161
+    y: -0.636
+    w: 1.161
+    h: 0.54
+  - id: aws_robomaker_warehouse_PalletJackB_01_7
+    kind: pallet_jack
+    source_model: aws_robomaker_warehouse_PalletJackB_01
+    x: 26.775
+    y: -6.807
+    w: 1.161
+    h: 0.54
+  - id: aws_robomaker_warehouse_Bucket_01_21
+    kind: box
+    source_model: aws_robomaker_warehouse_Bucket_01
+    x: 16.792
+    y: -4.33
+    w: 0.941
+    h: 1.222
+  - id: aws_robomaker_warehouse_ClutteringA_01_21
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringA_01
+    x: 26.379
+    y: 28.237
+    w: 2.161
+    h: 2.002
+  - id: aws_robomaker_warehouse_ClutteringD_01_20
+    kind: box
+    source_model: aws_robomaker_warehouse_ClutteringD_01
+    x: 24.914
+    y: 29.829
+    w: 1.017
+    h: 1.492

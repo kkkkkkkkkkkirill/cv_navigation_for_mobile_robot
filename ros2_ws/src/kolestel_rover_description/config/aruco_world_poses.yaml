@@ -1,0 +1,181 @@
+aruco_markers:
+  0:
+    x: 2.8
+    y: -7.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_a_south
+  1:
+    x: 9.8
+    y: -7.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_b_south
+  2:
+    x: 15.8
+    y: -7.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_c_south
+  3:
+    x: 22.8
+    y: -7.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_d_south
+  4:
+    x: 30.8
+    y: -7.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_e_south
+  5:
+    x: 2.8
+    y: -1.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_a_row1
+  6:
+    x: 9.8
+    y: -1.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_b_row1
+  7:
+    x: 15.8
+    y: -1.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_c_row1
+  8:
+    x: 22.8
+    y: -1.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_d_row1
+  9:
+    x: 30.8
+    y: -1.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_e_row1
+  10:
+    x: 2.8
+    y: 11.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_a_row2
+  11:
+    x: 9.8
+    y: 11.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_b_row2
+  12:
+    x: 15.8
+    y: 11.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_c_row2
+  13:
+    x: 22.8
+    y: 11.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_d_row2
+  14:
+    x: 30.8
+    y: 11.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_e_row2
+  15:
+    x: 2.8
+    y: 23.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_a_row3
+  16:
+    x: 9.8
+    y: 23.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_b_row3
+  17:
+    x: 15.8
+    y: 23.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_c_row3
+  18:
+    x: 22.8
+    y: 23.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_d_row3
+  19:
+    x: 30.8
+    y: 23.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_e_row3
+  20:
+    x: 2.8
+    y: 36.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_a_row4
+  21:
+    x: 9.8
+    y: 36.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_b_row4
+  22:
+    x: 15.8
+    y: 36.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_c_row4
+  23:
+    x: 22.8
+    y: 36.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_d_row4
+  24:
+    x: 30.8
+    y: 36.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_e_row4
+  25:
+    x: 2.8
+    y: 48.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_a_row5
+  26:
+    x: 9.8
+    y: 48.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_b_row5
+  27:
+    x: 15.8
+    y: 48.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_c_row5
+  28:
+    x: 22.8
+    y: 48.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_d_row5
+  29:
+    x: 30.8
+    y: 48.0
+    z: 0.6
+    yaw: 0.0
+    anchor_node: n_e_row5
