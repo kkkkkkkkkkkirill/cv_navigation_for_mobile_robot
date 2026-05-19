@@ -1,0 +1,165 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /TF1
+        - /Camera Raw1
+        - /ArUco Debug1
+      Splitter Ratio: 0.5
+    Tree Height: 600
+  - Class: rviz_common/Views
+    Name: Views
+    Expanded:
+      - /Current View1
+    Splitter Ratio: 0.5
+
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Reference Frame: map
+      Color: 160; 160; 164
+      Cell Size: 1
+      Plane Cell Count: 30
+      Enabled: true
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Frame Timeout: 15
+      Show Names: true
+      Show Axes: true
+      Show Arrows: false
+      Marker Scale: 0.5
+      Update Interval: 0
+    - Class: rviz_default_plugins/RobotModel
+      Name: RobotModel
+      Enabled: true
+      Description Topic:
+        Value: /robot_description
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+      Visual Enabled: true
+      Collision Enabled: false
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Lidar
+      Topic:
+        Value: /lidar
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+      Enabled: true
+      Style: Points
+      Size (Pixels): 3
+      Color Transformer: AxisColor
+      Axis: Z
+      Use Fixed Frame: true
+      Autocompute Intensity Bounds: true
+      Decay Time: 0
+      Position Transformer: XYZ
+      Selectable: true
+      Use rainbow: true
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Depth Camera
+      Topic:
+        Value: /camera/depth/points_base
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+      Enabled: true
+      Style: Points
+      Size (Pixels): 2
+      Color Transformer: AxisColor
+      Axis: X
+      Use Fixed Frame: false
+      Autocompute Value Bounds: false
+      Min Value: 0.3
+      Max Value: 5.0
+      Use rainbow: true
+      Decay Time: 0
+      Position Transformer: XYZ
+      Selectable: true
+    - Class: rviz_default_plugins/Image
+      Name: YOLOv8
+      Topic:
+        Value: /yolo/debug_image
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+      Enabled: true
+      Normalize Range: true
+      Max Value: 1
+      Min Value: 0
+      Median window: 5
+    - Class: rviz_default_plugins/Image
+      Name: ArUco Debug
+      Topic:
+        Value: /aruco/debug_image
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+      Enabled: true
+      Normalize Range: true
+      Max Value: 1
+      Min Value: 0
+      Median window: 5
+    - Class: rviz_default_plugins/Image
+      Name: Line Follower
+      Topic:
+        Value: /line_follower/debug_image
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+      Enabled: true
+      Normalize Range: true
+      Max Value: 1
+      Min Value: 0
+      Median window: 5
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Name: Current View
+      Target Frame: base_footprint
+      Distance: 12
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+      Pitch: 0.65
+      Yaw: 1.5708
+      Near Clip Distance: 0.01
+    Saved: ~
+
+Window Geometry:
+  Height: 900
+  Width: 1600
+  YOLOv8:
+    collapsed: false
+  ArUco Debug:
+    collapsed: false
+  Line Follower:
+    collapsed: false
+  Displays:
+    collapsed: false
+  Views:
+    collapsed: false

@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 
 from fastapi import APIRouter, Depends, status
+from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ..db import get_session
@@ -11,6 +12,15 @@ from ..services import robot_state
 from ..services.external_bridge import get_dispatch, handle_event
 from ..services.simulator import map_config, runtime, _broadcast_route
 from ..services.ws_manager import manager
+
+
+class ObstacleEventIn(BaseModel):
+    robot_name: str = 'amr-1'
+    blocked: bool
+    source: str | None = None
+    distance_m: float | None = None
+    detected_class: str | None = None
+
 
 router = APIRouter(prefix="/robot", tags=["robot"])
 
@@ -74,6 +84,22 @@ async def get_robot_dispatch(session: AsyncSession = Depends(get_session)) -> Ro
 @router.post("/event")
 async def post_robot_event(body: RobotEventIn, session: AsyncSession = Depends(get_session)) -> dict:
     return await handle_event(session, body)
+
+
+@router.post("/obstacle")
+async def post_obstacle(body: ObstacleEventIn) -> dict:
+    payload = {
+        "robot_name": body.robot_name,
+        "blocked": body.blocked,
+        "source": body.source,
+        "distance_m": body.distance_m,
+        "detected_class": body.detected_class,
+    }
+    try:
+        await manager.broadcast({"type": "obstacle", "payload": payload})
+    except Exception:
+        pass
+    return {"ok": True}
 
 
 @router.get("/map", tags=["robot"])

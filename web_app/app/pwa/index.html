@@ -26,6 +26,7 @@ main{display:grid;grid-template-columns:320px 1fr 320px;gap:18px;padding:18px;al
 <section class="card" style="grid-column:2 / 3"><div class="section-title">Статус робота</div><div class="hint">Положение, режим и состояние платформы.</div><div id="modeHint" class="note"></div><div id="robotStatus"></div></section>
 </main>
 <div id="toasts" class="toast-wrap"></div>
+<div id="obstacleBanner" style="position:fixed;top:0;left:0;right:0;background:#dc2626;color:#fff;padding:14px 18px;text-align:center;font-weight:800;font-size:15px;z-index:30;box-shadow:0 2px 8px rgba(0,0,0,0.2);display:none"></div>
 <script>
 const state={map:null,tasks:[],robots:[],route:{task_id:null,points:[],phase:'idle',target:null},selectedSource:'',selectedDestination:'',socket:null,controlMode:'unknown'};
 const API='';
@@ -53,6 +54,22 @@ function optionMarkup(v, text){return `<option value="${v}">${text}</option>`}
 function selectableStations(){return Object.entries(state.map.stations).filter(([id])=>id!=='DEPOT');}
 function stationOptions(){const opts=['<option value="">— выберите —</option>']; for(const [id,s] of selectableStations()){ opts.push(optionMarkup(id, `${s.label} (${id})`)); } return opts.join('');}
 function showToast(message){const el=document.createElement('div'); el.className='toast'; el.textContent=message; els.toasts.appendChild(el); setTimeout(()=>el.remove(),3500)}
+function handleObstacle(payload){
+  const el=document.getElementById('obstacleBanner');
+  if(!el) return;
+  if(payload && payload.blocked){
+    const src=payload.source||'?';
+    const d=(typeof payload.distance_m==='number') ? payload.distance_m.toFixed(2)+' м' : '?';
+    let extra='';
+    if(payload.detected_class){
+      extra=' YOLO: '+payload.detected_class+'.';
+    }
+    el.textContent='⚠  Робот остановлен — препятствие перед ним ('+src+', '+d+').'+extra+' Уберите препятствие, чтобы продолжить движение.';
+    el.style.display='block';
+  } else {
+    el.style.display='none';
+  }
+}
 async function fetchJSON(path, options){const r=await fetch(API+path,options); if(!r.ok) throw new Error(await r.text()); return await r.json();}
 function worldToUi(x,y){const t=state.map.transform; return {x:t.offset_x + (x - t.x_min) * t.scale, y:t.offset_y + (t.y_max - y) * t.scale};}
 function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
@@ -328,6 +345,8 @@ function connectWS(){
       renderMap();
     } else if(ev.type==='toast'){
       showToast(ev.payload.message);
+    } else if(ev.type==='obstacle'){
+      handleObstacle(ev.payload);
     }
   };
   ws.onclose=()=>setTimeout(connectWS,1200);

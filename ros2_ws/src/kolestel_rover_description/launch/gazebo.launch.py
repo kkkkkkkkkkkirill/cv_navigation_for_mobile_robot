@@ -41,6 +41,8 @@ def generate_launch_description():
     world_file = _resolve_world_file(pkg)
     map_file = _resolve_map_file(pkg)
     depot_x, depot_y = _load_depot_pose(map_file)
+    depot_x_f = float(depot_x)
+    depot_y_f = float(depot_y)
 
     share_root = os.path.dirname(pkg)
     resource_path = ':'.join(filter(None, [
@@ -56,6 +58,7 @@ def generate_launch_description():
     spawn_y = LaunchConfiguration('spawn_y')
     spawn_z = LaunchConfiguration('spawn_z')
     enable_aux_nodes = LaunchConfiguration('enable_aux_nodes')
+    publish_static_map_to_odom = LaunchConfiguration('publish_static_map_to_odom')
 
     robot_description = ParameterValue(Command(['xacro ', xacro_file]), value_type=str)
 
@@ -93,11 +96,28 @@ def generate_launch_description():
         parameters=[{'config_file': bridge_cfg, 'use_sim_time': True}],
     )
 
+    # CV nav uses aruco_node as the map->odom publisher (drift correction),
+    # so for that stack this publisher must be disabled.
+    # Note: we use a 30Hz Python republisher instead of static_transform_publisher
+    # because static_transform_publisher uses TRANSIENT_LOCAL QoS, which is
+    # sometimes missed by late subscribers (notably RViz on slow startup).
+    # The continuous /tf publish guarantees every subscriber sees the chain.
     map_to_odom_tf = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        name='map_to_odom_tf',
-        arguments=[spawn_x, spawn_y, '0', '0', '0', '0', 'map', 'odom'],
+        package='kolestel_rover_description',
+        executable='map_to_odom_publisher.py',
+        name='map_to_odom_publisher',
+        output='screen',
+        parameters=[{
+            'x': depot_x_f,
+            'y': depot_y_f,
+            'z': 0.0,
+            'yaw': 0.0,
+            'parent_frame': 'map',
+            'child_frame': 'odom',
+            'rate_hz': 30.0,
+            'use_sim_time': True,
+        }],
+        condition=IfCondition(publish_static_map_to_odom),
     )
 
     imu_tf = Node(
@@ -113,18 +133,25 @@ def generate_launch_description():
         arguments=['0', '0', '0', '0', '0', '0', 'laser_link', 'kolestel_rover/base_footprint/gpu_lidar'],
     )
 
+    # Gazebo Harmonic publishes camera frames in BODY convention (X-forward,
+    # Y-left, Z-up) — same as lidar — NOT optical (X-right, Y-down, Z-forward).
+    # So we need a body->optical rotation between the URDF's *_optical_frame
+    # (REP-103) and the Gazebo sensor frame. RPY positional form is yaw pitch
+    # roll, so yaw=pi/2 pitch=-pi/2 roll=0 gives the required body->optical mapping.
     camera_depth_tf = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
         name='camera_depth_tf',
-        arguments=['0', '0', '0', '0', '0', '0', 'camera_depth_optical_frame', 'kolestel_rover/base_footprint/depth_camera'],
+        arguments=['0', '0', '0', '1.5708', '-1.5708', '0',
+                   'camera_depth_optical_frame', 'kolestel_rover/base_footprint/depth_camera'],
     )
 
     camera_color_tf = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
         name='camera_color_tf',
-        arguments=['0', '0', '0', '0', '0', '0', 'camera_color_optical_frame', 'kolestel_rover/base_footprint/rgb_camera'],
+        arguments=['0', '0', '0', '1.5708', '-1.5708', '0',
+                   'camera_color_optical_frame', 'kolestel_rover/base_footprint/rgb_camera'],
     )
 
     odom_tf = Node(
@@ -164,6 +191,7 @@ def generate_launch_description():
         DeclareLaunchArgument('spawn_y', default_value=depot_y),
         DeclareLaunchArgument('spawn_z', default_value='0.10'),
         DeclareLaunchArgument('enable_aux_nodes', default_value='false'),
+        DeclareLaunchArgument('publish_static_map_to_odom', default_value='true'),
         SetEnvironmentVariable(name='GZ_SIM_RESOURCE_PATH', value=resource_path),
         rsp,
         gz_sim,

@@ -22,6 +22,10 @@ install(PROGRAMS
   scripts/line_follower_node.py
   scripts/cv_navigator.py
   scripts/aruco_node.py
+  scripts/yolo_node.py
+  scripts/depth_cloud_republisher.py
+  scripts/map_to_odom_publisher.py
+  scripts/lidar_map_republisher.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

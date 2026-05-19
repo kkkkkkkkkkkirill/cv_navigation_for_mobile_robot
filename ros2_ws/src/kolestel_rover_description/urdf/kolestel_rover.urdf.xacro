@@ -184,7 +184,7 @@
     <sensor name="gpu_lidar" type="gpu_lidar">
       <pose relative_to="laser_link">0 0 0 0 0 0</pose>
       <topic>/kolestel_rover/scan</topic>
-      <update_rate>10</update_rate>
+      <update_rate>30</update_rate>
       <ray>
         <scan>
           <horizontal>
@@ -255,7 +255,7 @@
         </image>
         <clip>
           <near>0.3</near>
-          <far>10.0</far>
+          <far>100.0</far>
         </clip>
       </camera>
       <always_on>1</always_on>
@@ -277,7 +277,7 @@
         </image>
         <clip>
           <near>0.1</near>
-          <far>10.0</far>
+          <far>100.0</far>
         </clip>
       </camera>
       <always_on>1</always_on>

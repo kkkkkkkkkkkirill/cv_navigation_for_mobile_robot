@@ -71,3 +71,6 @@ local_*
 # --- Editor backups ---
 *.bak
 *.orig
+
+# --- YOLO weights (auto-downloaded by ultralytics) ---
+*.pt

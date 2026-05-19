@@ -1483,5 +1483,40 @@
       <n>aruco_marker_29</n>
       <pose>30.8000 48.0000 0.6000 0 0 0.0000</pose>
     </include>
+
+    <!-- ============== Low-profile floor obstacles ===================== -->
+    <!-- 0.4 x 0.4 x 0.3 m box. The Mid-360 lidar at z=0.76m with min     -->
+    <!-- vertical angle -7 deg cannot see anything below ~0.64m at 1m     -->
+    <!-- forward distance, so this box is INVISIBLE to lidar but visible  -->
+    <!-- to the forward-facing D435 depth camera (mounted at z=0.4m).     -->
+    <!-- This demonstrates the depth camera complementing the lidar map   -->
+    <!-- for low floor objects.                                           -->
+    <model name="floor_box_1">
+      <static>true</static>
+      <pose>18.0 -8.0 0 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <pose>0 0 0.15 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.4 0.4 0.3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.25 0.15 1</ambient>
+            <diffuse>0.7 0.4 0.2 1</diffuse>
+          </material>
+        </visual>
+        <collision name="col">
+          <pose>0 0 0.15 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.4 0.4 0.3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
   </world>
 </sdf>
