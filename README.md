@@ -1,109 +1,74 @@
-# amr_stage4_cv_nav
+# CV Navigation for Mobile Robot
 
-Computer-vision navigation layer for an autonomous warehouse mobile robot — built on **ROS 2 Jazzy** + **Gazebo Harmonic** and integrated with a Nav2 baseline.
+Computer-vision navigation stack for a four-wheel warehouse mobile robot. The CV stack sits alongside a LiDAR + Nav2 baseline and adds three things the lidar can't do on its own: it follows painted floor lines, it corrects odometry drift against ArUco markers on shelf faces, and it adds low floor objects to the costmap using a depth camera. A YOLOv8 detector publishes class labels for the operator UI.
 
-This repo is the latest iteration (Stage 4) of a bachelor's thesis project at HSE FCS. It adds a complementary CV perception stack on top of an existing LiDAR-based Nav2 navigation system. The CV layer is drop-in compatible — it uses the same standard ROS 2 messages and the same operator UI as the LiDAR baseline.
+Everything is validated in a Gazebo Harmonic simulation of a small warehouse. The line-following subsystem also runs on a physical chassis with a USB camera (outdoor course on yellow tape).
 
----
+This is the codebase for my bachelor's thesis at HSE FCS, DSBA programme, 2026.
 
-## What's inside
+## Layout
 
-| Component | Description |
-| --- | --- |
-| `ros2_ws/` | ROS 2 package `kolestel_rover_description` — robot URDF, Gazebo worlds, launch files, Nav2 config, ArUco models, navigation map. |
-| `web_app/` | FastAPI backend + PWA frontend + thin rclpy bridges (status, dispatch, Nav2 task). |
-| `shared/` | Canonical warehouse layout (`user_saved_layout.sdf`), aligned 2D map (`warehouse_map.yaml`), ArUco world poses. |
-| `*.sh` (root) | One-command run scripts for the various launch profiles. |
-| `README_*.md` | Per-stage notes — Stage 1 → Stage 4 evolution and ArUco update log. |
+- `ros2_ws/` — ROS 2 package: URDF, Gazebo worlds, Nav2 config, launch files, the CV nodes.
+- `web_app/` — FastAPI backend, PWA frontend, and three small rclpy bridges (status, dispatch, Nav2 task).
+- `shared/` — warehouse SDF, the 2D map aligned to it, ArUco world poses.
+- `real_robot_demo/` — standalone runner for the physical-robot line-follow test (no ROS, no Gazebo).
+- `run_*.sh` — one-command launch scripts at the repo root.
 
----
+## CV nodes
 
-## CV layer — what it does
+**Line follower.** HSV mask of the yellow lane, morphological cleanup, centroid extraction, P-controller on the cross-track error. Pure OpenCV, 30 FPS on CPU.
 
-Three perception channels feeding a single graph planner (`cv_navigator`):
+**ArUco localizer.** `cv2.aruco.detectMarkers` plus `solvePnP` with `SOLVEPNP_IPPE_SQUARE` on 30 markers fixed to shelf faces. The result is fused with wheel odometry through a predict-update planar pose filter; outliers are rejected and the filter snaps back to the marker pose after divergence.
 
-1. **Stick-to-Line** (`line_follower` node) — HSV thresholding + morphological erosion + centroid extraction + P-controller. Follows painted yellow aisles at 30 FPS on plain CPU. No neural network.
-2. **ArUco localisation** (`aruco_node`) — detection + `solvePnP` (with `SOLVEPNP_IPPE_SQUARE`) on 30 markers placed on shelf faces. Provides absolute `odom → map` TF corrections to fix wheel-odometry drift.
-3. **Depth-camera fusion** — Intel RealSense D435 point cloud projected into the LiDAR costmap as inflation cells. Catches small floor obstacles that fall between LiDAR beams.
+**Depth obstacle layer.** Intel RealSense D435 point cloud, projected into the Nav2 costmap as inflation cells. The use case is small floor objects (the canonical test is a 0.4 × 0.4 × 0.3 m cardboard box) that fall under the Livox Mid-360 scan plane.
 
-Architecture diagram and full algorithmic breakdown are in the bachelor's thesis defence deck (not in this repo).
+**YOLOv8 detector.** `yolov8n-oiv7.pt` from Ultralytics, 601 Open Images classes, CPU inference. The class name flows into the operator-UI obstacle banner via WebSocket.
 
----
+**Graph planner.** Replaces Nav2's grid-based global planner with a route over the warehouse station graph (23 stations, 31 nodes, 51 lanes). Exposes the same `nav2_msgs/action/NavigateToPose` interface, so the operator UI drives either stack unchanged.
 
-## Quick start (simulation)
+## Run it in simulation
 
 ```bash
-# clean any old Gazebo state
+# clear stale Gazebo cache and previous build
 pkill -9 -f gz; pkill -9 -f ros; pkill -9 -f rviz; pkill -9 -f uvicorn
 rm -rf ~/.gz/sim ~/.gz/fuel ~/.gazebo /tmp/.gazebo* /tmp/gz_*
 rm -rf ros2_ws/build ros2_ws/install ros2_ws/log
 
-# build the ROS 2 package
+# build
 bash build_ros2.sh
 
-# run the full CV-nav stack (4 terminals)
+# four terminals
 bash run_gazebo_cv_nav.sh
 bash web_app/app/backend/run_external_backend.sh
 bash web_app/app/ros2_bridge/run_robot_status_bridge.sh
 bash web_app/app/ros2_bridge/run_task_nav2_bridge.sh
 ```
 
-Then open `http://127.0.0.1:8010` in your browser (hard-reload with **Ctrl+Shift+R**).
+Open `http://127.0.0.1:8010` in the browser, hard-reload with Ctrl+Shift+R.
 
-For variants — Gazebo only, Nav2-only baseline, smoke tests — see the other `run_*.sh` scripts at the repo root.
+Other entry points: `run_gazebo_only.sh` for the simulator alone, `run_nav2_baseline.sh` for the LiDAR-only stack to compare against.
 
----
+## Real-robot demo
 
-## Stage history
+`real_robot_demo/` runs the line-follow logic on a DEXP DWC-FHD03 USB webcam, no ROS, no Gazebo:
 
-| Stage | Focus | README |
-| --- | --- | --- |
-| 1 | Canonical user world + synchronised 2D map | [`README_STAGE1.md`](README_STAGE1.md) |
-| 3 | Dispatch / event bridge contract | [`README_STAGE3.md`](README_STAGE3.md) |
-| 4 | Real Nav2 integration | [`README_STAGE4.md`](README_STAGE4.md) |
-| 4-cv | CV layer + 30 ArUco markers + depth fusion (this version) | [`README_ARUCO_UPDATE.md`](README_ARUCO_UPDATE.md) |
+```bash
+cd real_robot_demo
+python3 calibrate.py    # one-time, chessboard intrinsics
+python3 line_follow.py --camera 0
+```
 
-Notes on hard-fix workarounds and Gazebo cache pitfalls live in `README_HARD_FIX_NOTES.txt` and `README_WORLD_CACHE_NOTE.txt`.
+The course is yellow tape on asphalt.
 
----
+## Stack
 
-## Tech stack
+ROS 2 Jazzy, Gazebo Harmonic, OpenCV 4 (no GPU), Nav2 baseline, FastAPI + WebSocket, vanilla PWA on the frontend. Sensors in sim: Livox Mid-360 LiDAR and Intel RealSense D435; on hardware so far: DEXP USB webcam.
 
-- **Middleware:** ROS 2 Jazzy
-- **Simulator:** Gazebo Harmonic
-- **CV:** OpenCV 4.x (Python, no GPU)
-- **Sensors (sim):** Intel RealSense D435, Livox MID-360 LiDAR
-- **Navigation:** Nav2 baseline + custom `cv_navigator` graph planner
-- **Backend:** FastAPI + SQLite task queue + WebSocket
-- **Frontend:** PWA (vanilla HTML/JS)
+## Onboard
 
----
-
-## Hardware target
-
-- Simulation: any Linux box with ROS 2 Jazzy + Gazebo Harmonic
-- On-board mini-PC: NucBox K10
-- Field deployment (separate workstream): Raspberry Pi 5 with IMX219-160 IR-CUT camera
-
-See [`MINIPC_RUN.md`](MINIPC_RUN.md) for mini-PC deployment notes.
-
----
+The target onboard machine is a GMKtec NucBox K10 (Intel N100). Notes for it live in `MINIPC_RUN.md`. Full hardware deployment with a Raspberry Pi 5 and an IMX219-160 IR-CUT camera is open work and is not in this repo yet.
 
 ## Author
 
-Kirill Budyak — HSE Faculty of Computer Science, DSBA programme, group 221, year 4.
-Supervisor: Ivan Stanislavovich Kopylov (Senior Lecturer, Big Data & Information Retrieval).
-
-Bachelor's thesis · Pre-defence 2026.
-
----
-
-## Latest update — CV-stack improvements
-
-See [CHANGELOG.md](CHANGELOG.md) for the full list. Headline items:
-
-* **ArUco localization** — full planar pose fuser (predict from `/odom`, update from `solvePnP`, outlier reject + divergence recovery).
-* **Depth-camera obstacle layer** — D435 sees low floor objects the Mid-360 lidar misses; demo case is a `0.4 × 0.4 × 0.3 m` floor box on the depot → SHELF_E1 route.
-* **YOLOv8 detection** — `yolov8n-oiv7.pt` (601 Open Images classes), detected class name flows into the web UI obstacle banner.
-* **Lidar / camera TF fixes** — `map_to_odom_publisher.py` (30 Hz `/tf`), `lidar_map_republisher.py` (pre-transformed cloud), correct body→optical rotation for the cameras.
-* **Real-robot stick-to-line demo** — `real_robot_demo/` runs the same YOLO + OC-SORT logic on a DEXP DWC-FHD03 USB camera (no ROS, no Gazebo).
+Kirill Budyak, HSE Faculty of Computer Science, Data Science and Business Analytics, group БПАД221.
+Supervisor: Ivan S. Kopylov, Big Data and Information Retrieval.
