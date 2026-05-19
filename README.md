@@ -63,12 +63,3 @@ The course is yellow tape on asphalt.
 ## Stack
 
 ROS 2 Jazzy, Gazebo Harmonic, OpenCV 4 (no GPU), Nav2 baseline, FastAPI + WebSocket, vanilla PWA on the frontend. Sensors in sim: Livox Mid-360 LiDAR and Intel RealSense D435; on hardware so far: DEXP USB webcam.
-
-## Onboard
-
-The target onboard machine is a GMKtec NucBox K10 (Intel N100). Notes for it live in `MINIPC_RUN.md`. Full hardware deployment with a Raspberry Pi 5 and an IMX219-160 IR-CUT camera is open work and is not in this repo yet.
-
-## Author
-
-Kirill Budyak, HSE Faculty of Computer Science, Data Science and Business Analytics, group БПАД221.
-Supervisor: Ivan S. Kopylov, Big Data and Information Retrieval.
